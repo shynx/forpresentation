@@ -70,7 +70,7 @@ def index(req):
         tablecontents += '<td>'+movie[1]+"</td>"        
         tablecontents += "<td>"+movie[2]+"</td>"
         tablecontents += "<td>"+str(movie[3])+"</td>"
-        tablecontents += '<td><a href="#" class="btn btn-info btn-sm active">Details</a></td>'
+        tablecontents += '<td><a href="http://pythonista.learning.edu/~pythonista/viewdetails?movieid='+str(movie[0])+'" class="btn btn-info btn-sm active">Details</a></td>'
         tablecontents += "</tr>"
         i = i + 1
     
