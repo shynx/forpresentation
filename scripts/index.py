@@ -1,4 +1,17 @@
 import psycopg2
+
+def getmovies():
+    constr = """
+       dbname='pythonistadb'
+       user='pythonista'
+       password='123456'
+       host='pythonista.learning.edu'
+    """
+    conn = psycopg2.connect(constr)
+    curr = conn.cursor()
+    curr.execute("select * from movies")
+    rows = curr.fetchall()
+    return rows
     
 def index(req):
     header = """
