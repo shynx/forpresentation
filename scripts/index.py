@@ -43,3 +43,35 @@ def index(req):
            </body>
            </html>
     """
+    
+    panelbegin = """
+      <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Listing</div>
+      <div class="panel-body">
+      """
+    tablebegin = """<table class="table table-hover table-condensed">"""
+    tableend = "</table>"
+    panelend = """      
+       </div>
+      </div>
+    """
+    
+    movies = getmovies()
+    tablecontents = ""
+    i = 1
+    for movie in movies:
+        if i % 2 == 0:
+            class_ = 'class="warning"'
+        else:
+            class_=""
+            
+        tablecontents += "<tr "+class_+">"
+        tablecontents += "<td>"+movie[1]+"</td>"        
+        tablecontents += "<td>"+movie[2]+"</td>"
+        tablecontents += "<td>"+str(movie[3])+"</td>"
+        tablecontents += "</tr>"
+        i = i + 1
+    
+    
+    return header + bodybegin + panelbegin + tablebegin + tablecontents + tableend + panelend + bodyend
