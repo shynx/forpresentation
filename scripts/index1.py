@@ -48,7 +48,7 @@ def index(req):
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Movie Details</a></li>
+            <li class="active"><a href="#">Movie's</a></li>
             <li><a href="#about">Rent List </a></li>
             <li><a href="#about">Returned List</a></li>
             <li><a href="#contact">About</a></li>

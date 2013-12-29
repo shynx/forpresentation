@@ -10,7 +10,7 @@ def getmovieinfo(movieid):
     """
     conn = psycopg2.connect(constr)
     curr = conn.cursor()
-    curr.execute("select * from movies")
+    curr.execute("select * from moviedetail")
     rows = curr.fetchall()
     return rows[0]
 
@@ -47,8 +47,30 @@ def index(req, movieid):
            </body>
            </html>
     """
+
+    panelbegin = """
+      <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Listing</div>
+      <div class="panel-body">
+      """
+    tablebegin = """<table class="table table-hover table-condensed">"""
+    tableend = "</table>"
+    panelend = """
+       </div>
+      </div>
+    """
+
     movie = getmovieinfo(movieid)
-    tablecontainer = '<div class="container"> '
+    tablecontents = ""
+    i = 1
+    for movie in movies:
+        if i % 2 == 0:
+            class_ = 'class="warning"'
+        else:
+            class_=""
+
+    tablecontainer =     '<div class="container"> '
     tablecontainer += ' <div class="starter-template"> '
     tablecontainer +=  ' <h1>Title: '+movie[2]+'</h1> '
     tablecontainer +=   '<p class="lead">Genre:' + movie[3] + ' <br>'
