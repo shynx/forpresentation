@@ -61,7 +61,7 @@ def index(req, movieid):
       </div>
     """
 
-    movie = getmovieinfo(movieid)
+    movie = getmovies()
     tablecontents = ""
     i = 1
     for movie in movies:
@@ -74,8 +74,7 @@ def index(req, movieid):
     tablecontainer += ' <div class="starter-template"> '
     tablecontainer +=  ' <h1>Title: '+movie[2]+'</h1> '
     tablecontainer +=   '<p class="lead">Genre:' + movie[3] + ' <br>'
-    tablecontainer +=  'Release Year'+ movie[4])
-    tablecontainer += '<br /> <a href="http://pythonista.learning.edu/~pythonista/index.py"'
+    tablecontainer += '<br /> <a href="http://pythonista.learning.edu/~sharon/index1.py"'
     tablecontainer += 'class="btn btn-success btn-sm active">Main Page</a></p></div></div>'
 
     return header + bodybegin  + moviecontainer + bodyend
