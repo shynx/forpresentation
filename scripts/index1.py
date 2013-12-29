@@ -49,7 +49,8 @@ def index(req):
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Movie Details</a></li>
-            <li><a href="#about">Movie Rental</a></li>
+            <li><a href="#about">Rent List </a></li>
+            <li><a href="#about">Returned List</a></li>
             <li><a href="#contact">About</a></li>
             </li>
           </ul>
@@ -67,10 +68,10 @@ def index(req):
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>Sharon Movie Rental</h1>
+        <h1>Movie Rental Summary</h1>
         <p>Exclusive Blockbuster .</p>
         <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">Start Preview &raquo;</a>
+          <a class="btn btn-lg btn-success" href="#" role="button">Start Browse</a>
         </p>
       </div>
 
