@@ -52,8 +52,8 @@ def index(req, movieid):
     moviecontainer += ' <div class="starter-template"> '
     moviecontainer +=  ' <h1>Title: '+movie[1]+'</h1> '
     moviecontainer +=   '<p class="lead">Genre:' + movie[2] + ' <br>'
-    moviecontainer +=  'Release Year'+ str(movie[3]) 
-    moviecontainer += '<br /> <a href="http://pythonista.learning.edu/~pythonista/index.py"'
+    moviecontainer +=  'Release Year'+ str(movie[3])
+    moviecontainer += '<br /> <a href="http://pythonista.learning.edu/~sharon/index.py"'
     moviecontainer += 'class="btn btn-success btn-sm active">Main Page</a></p></div></div>'
-  
+
     return header + bodybegin  + moviecontainer + bodyend

@@ -12,7 +12,7 @@ def getmovies():
     curr.execute("select * from movies")
     rows = curr.fetchall()
     return rows
-    
+
 def index(req):
     header = """
 	<!DOCTYPE html>
@@ -43,7 +43,7 @@ def index(req):
            </body>
            </html>
     """
-    
+
     panelbegin = """
       <div class="panel panel-default">
       <!-- Default panel contents -->
@@ -52,11 +52,11 @@ def index(req):
       """
     tablebegin = """<table class="table table-hover table-condensed">"""
     tableend = "</table>"
-    panelend = """      
+    panelend = """
        </div>
       </div>
     """
-    
+
     movies = getmovies()
     tablecontents = ""
     i = 1
@@ -65,14 +65,14 @@ def index(req):
             class_ = 'class="warning"'
         else:
             class_=""
-            
+
         tablecontents += "<tr "+class_+">"
-        tablecontents += '<td>'+movie[1]+"</td>"        
+        tablecontents += '<td>'+movie[1]+"</td>"
         tablecontents += "<td>"+movie[2]+"</td>"
         tablecontents += "<td>"+str(movie[3])+"</td>"
-        tablecontents += '<td><a href="http://pythonista.learning.edu/~pythonista/viewdetails?movieid='+str(movie[0])+'" class="btn btn-info btn-sm active">Details</a></td>'
+        tablecontents += '<td><a href="http://pythonista.learning.edu/~sharon/moviedetails.py" class="btn btn-info btn-sm active">Details</a></td>'
         tablecontents += "</tr>"
         i = i + 1
-    
-    
+
+
     return header + bodybegin + panelbegin + tablebegin + tablecontents + tableend + panelend + bodyend

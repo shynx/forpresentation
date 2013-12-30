@@ -1,5 +1,18 @@
 import psycopg2
 
+def moviedetail():
+    constr = """
+       dbname='sharondb'
+       user='sharon'
+       password='sharon123'
+       host='pythonista.learning.edu'
+    """
+    conn = psycopg2.connect(constr)
+    curr = conn.cursor()
+    curr.execute("select * from moviedetail")
+    rows = curr.fetchall()
+    return rows
+
 
 def index(req):
     header = """
@@ -41,36 +54,31 @@ def index(req):
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-
-          <a class="navbar-brand" href="#">Home</a>
-
-          <a class="navbar-brand" href="#">Customer</a>
+          <a class="navbar-brand">Main Page</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Movie's</a></li>
-            <li><a href="#about">Rent List </a></li>
-            <li><a href="#about">Returned List</a></li>
-            <li><a href="#contact">About</a></li>
+            <li class="active"><a href="http://pythonista.learning.edu/~sharon/viewdetails1.py">Movie's</a></li>
+            <li class="active"><a href="http://pythonista.learning.edu/~sharon/customer.py">Customer</a></li>
+            <li class="active"><a href="http://pythonista.learning.edu/~sharon/movierental.py">Rented CD's'</a></li>
+            <li class="active"><a href="http://pythonista.learning.edu/~sharon/movierental.py">Returned CD's'</a></li>
+            <li><a href="#about">About</a></li>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
              <li class="active"><a href="./">Static top</a></li>
-            <li><a href="../navbar-fixed-top/">Fixed top</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
-
     <div class="container">
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>Movie Rental Summary</h1>
-        <p>Exclusive Blockbuster .</p>
+        <h1>Shan's Movie Rental </h1>
+        <p>Exclusive Blockbuster Movie's. Watch Now!</p>
         <p>
-          <a class="btn btn-lg btn-success" href="#" role="button">Start Browse</a>
         </p>
       </div>
 
@@ -96,9 +104,8 @@ def index(req):
     panelbegin = """
       <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading">Listing</div>
-      <div class="panel-body">
       """
+
     tablebegin = """<table class="table table-hover table-condensed">"""
     tableend = "</table>"
     panelend = """
@@ -106,5 +113,4 @@ def index(req):
       </div>
     """
 
-
-    return header + bodybegin + panelbegin +tablebegin + tableend + panelend + bodyend
+    return header + bodybegin + panelbegin + tablebegin + tableend + panelend + bodyend

@@ -1,6 +1,7 @@
 import psycopg2
+import cgi
 
-def getmovies():
+def getmovieinfo(movieid):
     constr = """
        dbname='sharondb'
        user='sharon'
@@ -9,11 +10,14 @@ def getmovies():
     """
     conn = psycopg2.connect(constr)
     curr = conn.cursor()
-    curr.execute("select * from moviedetail")
+    curr.execute("select * from customerdetails where movieid = " + str(movieid))
     rows = curr.fetchall()
-    return rows
+    return rows[0]
 
-def index(req):
+
+
+def index(req, movieid):
+    movieid = cgi.escape(movieid)
     header = """
 	<!DOCTYPE html>
 	<html>
@@ -33,7 +37,7 @@ def index(req):
 	    """
     bodybegin = """
        <body>
-        <h1>~Welcome to Movies Database 2013~</h1>
+        <h1>Customer's Details</h1>
     """
     bodyend = """
            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -43,37 +47,17 @@ def index(req):
            </body>
            </html>
     """
+    movie = getmovieinfo(movieid)
+    moviecontainer = '<div class="container"> '
+    moviecontainer += ' <div class="starter-template"> '
+    moviecontainer +=  ' <h3>Customers ID: '+str(movie[0])+'</h3> '
+    moviecontainer +=   '<p class="lead">Fist Name:&nbsp;' + str(movie[1])
+    moviecontainer +=   '<p class="lead">Middle Name:&nbsp;' + str(movie[2])
+    moviecontainer +=   '<p class="lead">Last Name:&nbsp;' + str(movie[3])
+    moviecontainer +=   '<p class="lead">Address:&nbsp;' + str(movie[4])
+    moviecontainer +=   '<p class="lead">Genre:&nbsp;' + movie[5] + ' <br>'
+    moviecontainer +=  'Email Add:&nbsp;&nbsp;'+ str(movie[7])
+    moviecontainer += '<br /> <a href="http://pythonista.learning.edu/~sharon/customer.py" class="btn btn-info btn-sm active">Details</a></td>'
+    moviecontainer += 'class="btn btn-success btn-sm active">Main Page</a></p></div></div>'
 
-    panelbegin = """
-      <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading"><h4>List of Blockbuster Movie's</h4></div>
-
-      """
-    tablebegin = """<table class="table table-hover table-condensed">"""
-    tableend = "</table>"
-    panelend = """
-       </div>
-      </div>
-    """
-
-    movies = getmovies()
-    tablecontents = ""
-    i = 1
-    for movie in movies:
-        if i % 2 == 0:
-            class_ = 'class="warning"'
-        else:
-            class_=""
-
-        tablecontents += "<tr "+class_+">"
-        tablecontents += '<td>'+str(movie[0])+"</td>"
-        tablecontents += '<td>'+movie[1]+"</td>"
-        tablecontents += "<td>"+movie[2]+"</td>"
-        tablecontents += "<td>"+str(movie[4])+"</td>"
-        tablecontents += '<td><a href="http://pythonista.learning.edu/~sharon/moviedetails?movieid='+str(movie[0])+ ' & class="btn btn-info btn-sm active">Details</a></td>'
-        tablecontents += "</tr>"
-        i = i + 1
-
-
-    return header + bodybegin + panelbegin + tablebegin + tablecontents + tableend + panelend + bodyend
+    return header + bodybegin  + moviecontainer + bodyend

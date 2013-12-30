@@ -9,7 +9,7 @@ def getmovies():
     """
     conn = psycopg2.connect(constr)
     curr = conn.cursor()
-    curr.execute("select * from moviedetail")
+    curr.execute("select * from return")
     rows = curr.fetchall()
     return rows
 
@@ -33,7 +33,7 @@ def index(req):
 	    """
     bodybegin = """
        <body>
-        <h1>~Welcome to Movies Database 2013~</h1>
+        <h2>Rented Movie 2013</h2>
     """
     bodyend = """
            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -47,8 +47,8 @@ def index(req):
     panelbegin = """
       <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading"><h4>List of Blockbuster Movie's</h4></div>
-
+      <div class="panel-heading">Listing</div>
+      <div class="panel-body">
       """
     tablebegin = """<table class="table table-hover table-condensed">"""
     tableend = "</table>"
@@ -68,10 +68,9 @@ def index(req):
 
         tablecontents += "<tr "+class_+">"
         tablecontents += '<td>'+str(movie[0])+"</td>"
-        tablecontents += '<td>'+movie[1]+"</td>"
         tablecontents += "<td>"+movie[2]+"</td>"
-        tablecontents += "<td>"+str(movie[4])+"</td>"
-        tablecontents += '<td><a href="http://pythonista.learning.edu/~sharon/moviedetails?movieid='+str(movie[0])+ ' & class="btn btn-info btn-sm active">Details</a></td>'
+        tablecontents += "<td>"+str(movie[3])+"</td>"
+        tablecontents += '<td><a href="http://pythonista.learning.edu/~sharon/movierental.py" class="btn btn-info btn-sm active">Details</a></td>'
         tablecontents += "</tr>"
         i = i + 1
 

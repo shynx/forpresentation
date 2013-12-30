@@ -9,7 +9,7 @@ def getmovies():
     """
     conn = psycopg2.connect(constr)
     curr = conn.cursor()
-    curr.execute("select * from moviedetail")
+    curr.execute("select * from customer")
     rows = curr.fetchall()
     return rows
 
@@ -33,7 +33,9 @@ def index(req):
 	    """
     bodybegin = """
        <body>
-        <h1>~Welcome to Movies Database 2013~</h1>
+        &nbsp;&nbsp; <h2>~&nbsp;List of Customer's&nbsp;~</h2>
+        <br>
+        <a href="http://pythonista.learning.edu/~sharon/index1.py" class="btn btn-success btn-sm active">Back to Main Page</a></br>
     """
     bodyend = """
            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -47,8 +49,6 @@ def index(req):
     panelbegin = """
       <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading"><h4>List of Blockbuster Movie's</h4></div>
-
       """
     tablebegin = """<table class="table table-hover table-condensed">"""
     tableend = "</table>"
@@ -67,13 +67,18 @@ def index(req):
             class_=""
 
         tablecontents += "<tr "+class_+">"
-        tablecontents += '<td>'+str(movie[0])+"</td>"
-        tablecontents += '<td>'+movie[1]+"</td>"
-        tablecontents += "<td>"+movie[2]+"</td>"
+        tablecontents += "<td>"+movie[0]+"</td>"
+        tablecontents += "<td>"+str(movie[1])+"</td>"
+        tablecontents += "<td>"+str(movie[2])+"</td>"
+        tablecontents += "<td>"+str(movie[3])+"</td>"
         tablecontents += "<td>"+str(movie[4])+"</td>"
-        tablecontents += '<td><a href="http://pythonista.learning.edu/~sharon/moviedetails?movieid='+str(movie[0])+ ' & class="btn btn-info btn-sm active">Details</a></td>'
+        tablecontents += "<td>"+str(movie[5])+"</td>"
+        tablecontents += "<td>"+str(movie[6])+"</td>"
+        tablecontents += '<td><a href="http://pythonista.learning.edu/~sharon/moviedetails.py"</td>'
         tablecontents += "</tr>"
         i = i + 1
+
+
 
 
     return header + bodybegin + panelbegin + tablebegin + tablecontents + tableend + panelend + bodyend
