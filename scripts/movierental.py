@@ -9,7 +9,7 @@ def getmovies():
     """
     conn = psycopg2.connect(constr)
     curr = conn.cursor()
-    curr.execute("select * from return")
+    curr.execute("select * from customer, moviedetail, movierental")
     rows = curr.fetchall()
     return rows
 
